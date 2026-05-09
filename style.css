@@ -181,7 +181,6 @@ body {
   color: var(--secondary-color);
   backdrop-filter: blur(10px);
   opacity: 0;
-  display: none;
   transform: translateY(20px);
   direction: rtl;
 }
