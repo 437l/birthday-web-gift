@@ -8,12 +8,12 @@ const galleryData = {
   people: [
     {
       name: "Name 1",
-      image: "image-url-1",
+      image: "https://i.imgur.com/6kayMGP.jpeg",
       caption: "Caption 1"
     },
     {
       name: "Name 2",
-      image: "image-url-2",
+      image: "https://i.imgur.com/nDdMsyO.jpeg",
       caption: "Caption 2"
     }
   ]
