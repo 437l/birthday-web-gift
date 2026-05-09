@@ -3,7 +3,7 @@ const galleryData = {
   music: "https://mp3tourl.com/audio/1778104889205-d3f1bf97-6ff6-4de5-be39-7b816d0753d0.m4a",
 
   endMessage: "Thanks for watching",
-  endImage: "",
+  endImage: "https://i.imgur.com/r9n0CP2.jpeg",
 
   people: [
     {
