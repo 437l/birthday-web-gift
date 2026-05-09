@@ -53,6 +53,15 @@ initStars();
 drawStars();
 
 function startSequence() {
+  document.addEventListener("click", () => {
+  const music = document.getElementById("bgMusic");
+
+  if (music && music.paused) {
+    music.volume = 0.5;
+    music.play();
+  }
+  });
+
   const startDiv = document.getElementById("startView");
 
   startDiv.classList.add("fade-out-element");
