@@ -53,14 +53,15 @@ initStars();
 drawStars();
 
 function startSequence() {
-  document.addEventListener("click", () => {
-  const music = document.getElementById("bgMusic");
+const music = new Audio(galleryData.music);
+music.loop = true;
 
-  if (music && music.paused) {
+document.addEventListener("click", () => {
+  if (music.paused) {
     music.volume = 0.5;
     music.play();
   }
-  });
+});
 
   const startDiv = document.getElementById("startView");
 
