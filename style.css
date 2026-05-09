@@ -180,15 +180,16 @@ body {
   font-size: 20px;
   color: var(--secondary-color);
   backdrop-filter: blur(10px);
+
   opacity: 0;
   transform: translateY(20px);
-  direction: rtl;
+  pointer-events: none;
 }
 
 .message.show {
-  display: block;
   opacity: 1;
   transform: translateY(0);
+  pointer-events: auto;
 }
 
 #endPage {
