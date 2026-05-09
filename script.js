@@ -52,16 +52,15 @@ window.addEventListener('resize', initStars);
 initStars();
 drawStars();
 
-function startSequence() {
-const music = new Audio(galleryData.music);
+const music = document.getElementById("bgMusic");
 music.loop = true;
 
-document.addEventListener("click", () => {
+function startSequence() {
+
   if (music.paused) {
     music.volume = 0.5;
     music.play();
   }
-});
 
   const startDiv = document.getElementById("startView");
 
