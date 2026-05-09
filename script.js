@@ -114,8 +114,9 @@ function startCount() {
 
 function typeText() {
   const el = document.getElementById("text");
+  const msgBox = document.getElementById("messageBox");
 
-  const fullText = galleryData.welcomeText;
+  const fullText = galleryData.welcomeMessage;
 
   el.textContent = "";
   el.style.display = "block";
@@ -131,13 +132,11 @@ function typeText() {
     } else {
       clearInterval(interval);
 
-      const msgBox = document.getElementById("messageBox");
-
       msgBox.style.display = "block";
 
       setTimeout(() => {
         msgBox.classList.add("show");
-      }, 50);
+      }, 100);
     }
 
   }, 60);
