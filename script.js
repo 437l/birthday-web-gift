@@ -144,10 +144,19 @@ function typeText() {
 
 function openGallery() {
   const overlay = document.getElementById("overlay");
-
   overlay.classList.add("active");
 
   setTimeout(() => {
-    window.location.href = "gallery.html";
+    document.getElementById("text").style.display = "none";
+    document.getElementById("messageBox").style.display = "none";
+
+    const gallery = document.getElementById("gallery");
+    gallery.style.display = "flex";
+    updateCard();
+
+    setTimeout(() => {
+      gallery.classList.add("show");
+      overlay.classList.remove("active");
+    }, 50);
   }, 800);
 }
