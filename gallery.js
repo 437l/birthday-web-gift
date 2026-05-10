@@ -2,15 +2,15 @@ const galleryData = {
 
   people: [
     {
-      image: "image1.jpg",
+      image: "https://i.imgur.com/Nmwgm8m.jpeg",
       caption: "هنا الكلام اللي يظهر مع الصورة الأولى"
     },
     {
-      image: "image2.jpg",
+      image: "https://i.imgur.com/Nmwgm8m.jpeg",
       caption: "هنا الكلام للصورة الثانية"
     },
     {
-      image: "image3.jpg",
+      image: "https://i.imgur.com/Nmwgm8m.jpeg",
       caption: "هنا الكلام للصورة الثالثة"
     }
   ],
