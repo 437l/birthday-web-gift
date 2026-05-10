@@ -1,5 +1,6 @@
 const galleryData = {
 
+  welcomeText: "happy birthday",
   m3aida: [
     {
       image: "https://i.imgur.com/Nmwgm8m.jpeg",
@@ -14,5 +15,7 @@ const galleryData = {
       caption: "هنا الكلام للصورة الثالثة"
     }
   ],
+  
+    endMessage: "endddddd"
 
 };
