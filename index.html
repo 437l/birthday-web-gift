@@ -229,7 +229,7 @@ function openGallery(){
 }
 
 function updateCard(){
-  let p=galleryData.people[currentIndex];
+  let p=galleryData.m3aida[currentIndex];
   document.getElementById("image").src=p.image;
   document.getElementById("desc").textContent=p.caption;
 }
@@ -239,7 +239,7 @@ function nextImage(){
   page.classList.add("flipping");
 
   setTimeout(()=>{
-    if(currentIndex<galleryData.people.length-1){
+    if(currentIndex<galleryData.m3aida.length-1){
       currentIndex++;
       updateCard();
       page.classList.remove("flipping");
