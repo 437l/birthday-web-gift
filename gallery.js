@@ -1,6 +1,6 @@
 const galleryData = {
 
-  people: [
+  m3aida: [
     {
       image: "https://i.imgur.com/Nmwgm8m.jpeg",
       caption: "هنا الكلام اللي يظهر مع الصورة الأولى"
