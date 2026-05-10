@@ -1,4 +1,4 @@
-const galleryData = {
+const gallery = {
 
   welcomeText: "happy birthday",
   m3aida: [
