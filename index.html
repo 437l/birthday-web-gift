@@ -190,7 +190,7 @@ body{
 </div>
 
 <div class="end-page" id="endPage">
-  رسالة اخر شي هون
+<div id="typeText"></div>
 </div>
 
 </div>
@@ -275,8 +275,31 @@ flipping=false;
 }
 
 function showEnd(){
+
 document.getElementById("page").style.display="none";
+
 document.getElementById("endPage").style.display="flex";
+
+typeWriter(0, "الرسالة اخر شي هون");
+
+}
+
+function typeWriter(text,i){
+
+if(i===0){
+
+document.getElementById("typeText").innerHTML="";
+
+}
+
+if(i<text.length){
+
+document.getElementById("typeText").innerHTML+=text.charAt(i);
+
+setTimeout(()=>typeWriter(text,i+1),60);
+
+}
+
 }
 
 </script>
