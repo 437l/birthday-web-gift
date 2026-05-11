@@ -144,6 +144,21 @@ body{
   color:#ff8fad;
   font-size:12px;
 }
+.star {
+  position: fixed;
+  width: 4px;
+  height: 4px;
+  background: #ff7fb0;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: float 6s linear infinite;
+  z-index: 1;
+}
+
+@keyframes float {
+  0% { transform: translateY(100vh); }
+  100% { transform: translateY(-10vh); }
+}
 
 </style>
 </head>
@@ -301,6 +316,18 @@ setTimeout(()=>typeWriter(text,i+1),60);
 }
 
 }
+
+function createStars(){
+  for(let i=0;i<60;i++){
+    let s=document.createElement("div");
+    s.className="star";
+    s.style.left=Math.random()*window.innerWidth+"px";
+    s.style.animationDuration=(3+Math.random()*5)+"s";
+    document.body.appendChild(s);
+  }
+}
+
+createStars();
 
 </script>
 
