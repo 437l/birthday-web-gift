@@ -489,7 +489,7 @@ function openGallery() {
 function updateCard() {
   const person = galleryData.people[currentIndex];
   const img = document.getElementById("image");
-  const nameEl = "";
+  const nameEl = document.getElementById("name");
   const descEl = document.getElementById("desc");
   const cardText = document.getElementById("cardText");
 
@@ -507,7 +507,7 @@ function updateCard() {
       body.classList.remove("engineer-mode");  
     }
     
-    nameEl.textContent = person.name;
+    // nameEl.textContent = person.name;
 
     if (person.job === "engineer") {
       nameEl.style.color = "#000000"; 
