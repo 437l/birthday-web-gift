@@ -192,21 +192,30 @@ body.engineer-mode {
 
 .message {
   margin-top: 30px;
-  padding: 15px 20px;
+  padding: 10px 16px;
   border-radius: 999px;
-  background: #ff82b8;
-  border: 1px solid var(--panel-border);
+
+  background: linear-gradient(135deg, #ff4f9a, #ff8fc2);
+  color: #000; 
+
   cursor: pointer;
-  transition: all 0.4s var(--ease-in-out);
-  font-family: 'Cairo', sans-serif;
+
+  font-size: 14px;
   font-weight: 700;
-  font-size: 16px;
-  color: #ff4f9a;
-  backdrop-filter: blur(10px);
+
   opacity: 0;
   display: none;
-  transform: translateY(20px);
-  direction: rtl;
+
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+
+  transition: all 0.3s ease;
+}
+
+.message.show {
+  display: block;
+  opacity: 1;
 }
 
 .message.show {
