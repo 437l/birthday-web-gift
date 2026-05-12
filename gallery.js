@@ -1,7 +1,7 @@
-const gallery = {
+const galleryData = {
 
   welcomeText: "happy birthday",
-  m3aida: [
+  people: [
     {
       image: "https://i.imgur.com/Nmwgm8m.jpeg",
       caption: "هنا الكلام اللي يظهر مع الصورة الأولى"
@@ -16,6 +16,7 @@ const gallery = {
     }
   ],
   
-    endMessage: "endddddd"
+    endMessage: "endddddd",
+    endImage: ""
 
 };
