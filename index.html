@@ -12,15 +12,12 @@
 <style>
 :root {
   --bg-gradient: linear-gradient(135deg, #ffe0ec, #ffd1e8, #ffc2dd);
-
+  --ease-in-out: ease-in-out;
   --primary-gold: #ff4f9a;
-
   --text-main: #2a2a2a;
   --text-muted: #6b6b6b;
-
   --panel-bg: rgba(255, 255, 255, 0.55);
   --panel-border: rgba(255, 79, 154, 0.25);
-
   --btn-bg: linear-gradient(135deg, #ff4f9a, #ff8fc2);
   --btn-hover: linear-gradient(135deg, #ff2f87, #ff6fb3);
 }
@@ -42,7 +39,13 @@ body {
   perspective: 1000px;
 }
 
-
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at top, rgba(255,79,154,0.15), transparent 60%);
+  pointer-events: none;
+}
 
 /*  delete it */
 body.engineer-mode {
@@ -95,7 +98,7 @@ body.engineer-mode {
   border-radius: 50px;
   border: none;
   background: var(--btn-bg);
-  color: #111111;
+  color: #1a1a1a;
   cursor: pointer;
   transition: all 0.4s var(--ease-in-out);
   font-size: 18px;
@@ -133,7 +136,7 @@ body.engineer-mode {
   font-size: 120px;
   font-weight: 700;
   color: var(--primary-gold);
-  text-shadow: 0 0 20px rgba(239, 68, 68, 0.6);
+  text-shadow: 0 0 25px rgba(255, 79, 154, 0.5);
   opacity: 0;
   display: none;
   transform: scale(0.5);
