@@ -20,6 +20,6 @@ const galleryData = {
   ],
   
     endMessage: "endddddd",
-    endImage: ""
+    endImage: "https://i.imgur.com/Nmwgm8m.jpeg"
 
 };
