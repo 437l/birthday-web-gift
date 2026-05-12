@@ -60,7 +60,7 @@ body{
     border-radius:8px 14px 14px 8px;
     transform-origin:left;
     transition:1.6s cubic-bezier(.77,0,.175,1);
-    z-index:9999;
+    z-index:50;
     cursor:pointer;
     overflow:hidden;
 
@@ -143,7 +143,7 @@ transition:transform 1s cubic-bezier(.77,0,.175,1);
     box-shadow:
     0 5px 15px rgba(0,0,0,.18);
 
-    z-index:1;
+    z-index:5;
 }
 
 /* STACK */
@@ -197,6 +197,7 @@ transition:transform 1s cubic-bezier(.77,0,.175,1);
 /* OPEN */
 
 .book.open .cover{
+    pointer-events:none;
     transform:rotateY(-180deg);
 }
 
