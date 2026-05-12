@@ -489,7 +489,6 @@ function openGallery() {
 function updateCard() {
   const person = galleryData.people[currentIndex];
   const img = document.getElementById("image");
-  const nameEl = document.getElementById("name");
   const descEl = document.getElementById("desc");
   const cardText = document.getElementById("cardText");
 
@@ -499,22 +498,6 @@ function updateCard() {
 
   setTimeout(() => {
     img.src = person.image;
-    
-    const body = document.body;
-    if (person.job === "engineer") {
-      body.classList.add("engineer-mode"); 
-    } else {
-      body.classList.remove("engineer-mode");  
-    }
-    
-    // nameEl.textContent = person.name;
-
-    if (person.job === "engineer") {
-      nameEl.style.color = "#000000"; 
-    } else {
-      nameEl.style.color = "";
-    }
-    
     descEl.textContent = person.caption;
 
     img.onload = () => {
@@ -522,13 +505,6 @@ function updateCard() {
       cardText.style.opacity = "1";
       cardText.style.transform = "translateY(0)";
     };
-    
-    setTimeout(() => {
-      img.classList.remove("fade-out");
-      cardText.style.opacity = "1";
-      cardText.style.transform = "translateY(0)";
-    }, 300);
-
   }, 400);
 }
 
