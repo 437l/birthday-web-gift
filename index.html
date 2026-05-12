@@ -20,7 +20,6 @@
   --btn-bg: linear-gradient(135deg, #7fb3ff, #b38cff);
   --btn-hover: linear-gradient(135deg, #6aa5ff, #a06fff);
 }
-
 * {
   margin: 0;
   padding: 0;
@@ -37,6 +36,17 @@ body {
   overflow: auto;
   font-family: 'Poppins', 'Cairo', sans-serif;
   perspective: 1000px;
+}
+
+
+
+/*  delete it */
+body.engineer-mode {
+  background-color: #f0f4f8;
+  background-image: 
+    linear-gradient(rgba(255, 172, 191, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 172, 191, 0.2) 1px, transparent 1px) !important;
+  background-size: 30px 30px !important;
 }
 
 #overlay {
@@ -97,6 +107,24 @@ body {
   box-shadow: 0 8px 25px rgba(239, 68, 68, 0.5);
 }
 
+.btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(45deg);
+  transition: all 0.6s var(--ease-in-out);
+  opacity: 0;
+}
+
+.btn:hover::after {
+  left: 120%;
+  opacity: 1;
+}
+
 #count {
   font-size: 120px;
   font-weight: 700;
@@ -126,10 +154,13 @@ body {
   font-weight: 500;
   white-space: pre-line;
   direction: rtl;
+
   color: var(--text-main);
+
   text-shadow: 0 0 8px rgba(255, 0, 98, 0.6),
                0 0 20px rgba(255, 0, 98, 0.4),
                0 0 35px rgba(255, 0, 98, 0.2);
+
   opacity: 0;
   display: none;
   transition: opacity 0.5s var(--ease-in-out);
@@ -139,6 +170,18 @@ body {
   display: block;
   opacity: 1;
 }
+
+.cursor {
+  display: inline-block;
+  width: 3px;
+  height: 28px;
+  background: var(--primary-gold);
+  margin-left: 5px;
+  animation: blink 1s infinite;
+  vertical-align: middle;
+}
+
+@keyframes blink { 50% { opacity: 0; } }
 
 .message {
   margin-top: 30px;
@@ -206,6 +249,7 @@ body {
   transform: scale(0.9) translateY(10px); 
 }
 
+
 #cardText {
   margin-top: 20px;
   padding: 15px 20px;
@@ -215,6 +259,11 @@ body {
   backdrop-filter: blur(8px);
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   transition: all 0.5s ease;
+}
+
+#cardText.fade-out {
+  opacity: 0;
+  transform: translateY(5px);
 }
 
 #name {
@@ -228,6 +277,14 @@ body {
   font-size: 16px;
   color: var(--text-muted);
   line-height: 1.6;
+}
+
+#endText {
+  color: #ff0062;
+  text-shadow: 0 0 8px #ff0062,
+               0 0 18px #ff0062,
+               0 0 30px #ff0062,
+               0 0 45px rgba(255, 0, 98, 0.6);
 }
 
 #endPage {
@@ -251,10 +308,20 @@ body {
   width: 260px;
   border-radius: 16px;
   box-shadow: 0 0 30px rgba(255,0,0,0.2);
+  animation: pop 0.6s ease;
 }
+
+@keyframes pop {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.view { display: none; }
+.view.active { display: flex; flex-direction: column; align-items: center; }
+.fade-out-element { opacity: 0 !important; transform: translateY(-20px) !important; transition: all 0.5s var(--ease-in-out) !important; }
+
 </style>
 </head>
-
 <body>
 
 <canvas id="starCanvas"></canvas>
@@ -265,7 +332,6 @@ body {
 </audio>
 
 <div class="container">
-
   <div id="startView" class="view active">
     <button class="btn" onclick="startSequence()">Start</button>
   </div>
@@ -286,13 +352,14 @@ body {
 </div>
 
 <div id="endPage">
-  <img id="endImage">
-  <div id="endText"></div>
+  <img id="endImage" style="width: 260px; border-radius: 16px;">
+  <div id="endText" style="color: white; margin-top: 20px;"></div>
 </div>
 
-<script src="gallery.js"></script>
+<script src="galleryData.js"></script>
 
 <script>
+
 const canvas = document.getElementById('starCanvas');
 const ctx = canvas.getContext('2d');
 let stars = [];
@@ -314,8 +381,7 @@ function initStars() {
 
 function drawStars() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = '#ff0062';
-
+    ctx.fillStyle = '#ff0062';
   stars.forEach(s => {
     ctx.globalAlpha = s.opacity;
     ctx.beginPath();
@@ -323,15 +389,175 @@ function drawStars() {
     ctx.fill();
     s.y -= s.speed;
     if (s.y < 0) s.y = canvas.height;
+    s.opacity += (Math.random() - 0.5) * 0.05;
+    if (s.opacity < 0.1) s.opacity = 0.1;
+    if (s.opacity > 1) s.opacity = 1;
   });
-
   requestAnimationFrame(drawStars);
 }
 
 window.addEventListener('resize', initStars);
 initStars();
 drawStars();
+
+const music = document.getElementById("bgMusic");
+let currentIndex = 0;
+
+function startSequence() {
+  music.play().catch(() => {});
+  const startDiv = document.getElementById("startView");
+  startDiv.classList.add("fade-out-element");
+  setTimeout(() => {
+    startDiv.classList.remove("active");
+    startDiv.style.display = "none";
+    startCount();
+  }, 500);
+}
+
+function startCount() {
+  let i = 1;
+  const el = document.getElementById("count");
+  el.style.display = "block";
+  setTimeout(() => el.classList.add("show"), 50);
+
+  const interval = setInterval(() => {
+    el.textContent = i;
+    el.classList.remove("show");
+    
+    setTimeout(() => {
+      if (i <= 3) el.classList.add("show");
+    }, 50);
+
+    i++;
+    if (i > 3) {
+      clearInterval(interval);
+      el.classList.add("hide");
+      setTimeout(() => {
+        el.style.display = "none";
+        typeText();
+      }, 500);
+    }
+  }, 900);
+}
+
+function typeText() {
+  const el = document.getElementById("text");
+  const fullText = galleryData.welcomeText;
+
+  el.textContent = "";
+  el.style.display = "block";
+  el.classList.add("show");
+
+  let i = 0;
+  
+  const interval = setInterval(() => {
+    if (i <= fullText.length) {
+      el.textContent = fullText.substring(0, i);
+      i++;
+    } else {
+      clearInterval(interval);
+      const msgBox = document.getElementById("messageBox");
+      msgBox.style.display = "block";
+      setTimeout(() => msgBox.classList.add("show"), 50);
+    }
+  }, 60);
+}
+
+function openGallery() {
+  const overlay = document.getElementById("overlay");
+  overlay.classList.add("active");
+
+  setTimeout(() => {
+    document.getElementById("text").style.display = "none";
+    document.getElementById("messageBox").style.display = "none";
+    
+    const gallery = document.getElementById("gallery");
+    gallery.style.display = "flex";
+    updateCard();
+
+    setTimeout(() => {
+      gallery.classList.add("show");
+      overlay.classList.remove("active");
+    }, 50);
+  }, 800);
+}
+
+function updateCard() {
+  const person = galleryData.people[currentIndex];
+  const img = document.getElementById("image");
+  const nameEl = document.getElementById("name");
+  const descEl = document.getElementById("desc");
+  const cardText = document.getElementById("cardText");
+
+  img.classList.add("fade-out");
+  cardText.style.opacity = "0";
+  cardText.style.transform = "translateY(10px)";
+
+  setTimeout(() => {
+    img.src = person.image;
+    
+    const body = document.body;
+    if (person.job === "engineer") {
+      body.classList.add("engineer-mode"); 
+    } else {
+      body.classList.remove("engineer-mode");  
+    }
+    
+    nameEl.textContent = person.name;
+
+    if (person.job === "engineer") {
+      nameEl.style.color = "#000000"; 
+    } else {
+      nameEl.style.color = "";
+    }
+    
+    descEl.textContent = person.caption;
+
+    img.onload = () => {
+      img.classList.remove("fade-out");
+      cardText.style.opacity = "1";
+      cardText.style.transform = "translateY(0)";
+    };
+    
+    setTimeout(() => {
+      img.classList.remove("fade-out");
+      cardText.style.opacity = "1";
+      cardText.style.transform = "translateY(0)";
+    }, 300);
+
+  }, 400);
+}
+
+
+function nextImage() {
+  if (currentIndex < galleryData.people.length - 1) {
+    currentIndex++;
+    updateCard();
+  } else {
+    showEndMessage();
+  }
+}
+
+function showEndMessage() {
+  document.getElementById("gallery").style.display = "none";
+  const endPage = document.getElementById("endPage");
+  endPage.classList.add("active");
+
+  const img = document.getElementById("endImage");
+  const text = document.getElementById("endText");
+
+  img.src = galleryData.endImage;
+  text.textContent = "";
+
+  let i = 0;
+  const msg = galleryData.endMessage;
+  const interval = setInterval(() => {
+    text.textContent += msg[i];
+    i++;
+    if (i >= msg.length) clearInterval(interval);
+  }, 60);
+}
 </script>
 
 </body>
-</html>
+</html></html>
