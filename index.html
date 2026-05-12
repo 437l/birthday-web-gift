@@ -193,31 +193,26 @@ body.engineer-mode {
 .message {
   margin-top: 30px;
   padding: 15px 20px;
-  border-radius: 15px;
-  background: var(--panel-bg);
+  border-radius: 999px;
+  background: #ff82b8;
   border: 1px solid var(--panel-border);
   cursor: pointer;
   transition: all 0.4s var(--ease-in-out);
   font-family: 'Cairo', sans-serif;
   font-weight: 700;
   font-size: 16px;
-  color: #ff4f9a;
+  color: #fff;
   backdrop-filter: blur(10px);
+
   opacity: 0;
-  display: none;
   transform: translateY(20px);
-  direction: rtl;
+  pointer-events: none;
 }
 
 .message.show {
-  display: block;
-  opacity: 1;
-}
-
-.message.show {
-  display: block;
   opacity: 1;
   transform: translateY(0);
+  pointer-events: auto;
 }
 
 #gallery {
