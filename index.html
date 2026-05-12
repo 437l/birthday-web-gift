@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>3D Real Book</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Real 3D Book</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -15,61 +16,70 @@
 }
 
 body{
+    width:100%;
     height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
     overflow:hidden;
     background:
-    radial-gradient(circle at top,#3a2a20,#120d0a 70%);
+    radial-gradient(circle at top,#3b2a1f,#120d0a 70%);
     font-family:'Cairo',sans-serif;
-    perspective:3000px;
+    perspective:5000px;
 }
 
 /* ===== BOOK ===== */
 
-.book-wrap{
+.book{
     position:relative;
-    width:430px;
-    height:600px;
+    width:420px;
+    height:580px;
     transform-style:preserve-3d;
 }
 
-.book{
-    width:100%;
-    height:100%;
-    position:relative;
-    transform-style:preserve-3d;
+/* ===== SHADOW ===== */
+
+.shadow{
+    position:absolute;
+    width:450px;
+    height:60px;
+    background:rgba(0,0,0,.45);
+    filter:blur(35px);
+    border-radius:50%;
+    bottom:-50px;
+    left:50%;
+    transform:translateX(-50%);
 }
 
 /* ===== COVER ===== */
 
 .cover{
     position:absolute;
-    width:100%;
-    height:100%;
+    inset:0;
     background:
-    linear-gradient(145deg,#6e4623,#3f250f);
-    border-radius:10px 18px 18px 10px;
+    linear-gradient(145deg,#73451f,#3e220d);
+    border-radius:8px 14px 14px 8px;
     transform-origin:left;
-    transition:1.5s cubic-bezier(.77,0,.175,1);
-    z-index:100;
-    box-shadow:
-    inset 0 0 20px rgba(255,255,255,.08),
-    inset -8px 0 15px rgba(0,0,0,.4),
-    0 25px 50px rgba(0,0,0,.7);
+    transform-style:preserve-3d;
+    transition:1.6s cubic-bezier(.77,0,.175,1);
+    z-index:999;
     cursor:pointer;
-    overflow:hidden;
+
+    box-shadow:
+    inset 0 0 25px rgba(255,255,255,.05),
+    inset -8px 0 10px rgba(0,0,0,.45),
+    0 20px 50px rgba(0,0,0,.7);
 }
 
 .cover::before{
     content:"";
     position:absolute;
     top:0;
-    right:15px;
-    width:10px;
+    left:0;
+    width:16px;
     height:100%;
-    background:rgba(0,0,0,.25);
+    background:
+    linear-gradient(to right,#2b1709,#5b3417,#2b1709);
 }
 
 .cover::after{
@@ -83,29 +93,31 @@ body{
         transparent 2px,
         rgba(255,255,255,.02) 3px
     );
+    border-radius:inherit;
 }
 
-.cover-title{
+.cover-content{
     position:absolute;
     inset:0;
     display:flex;
-    align-items:center;
-    justify-content:center;
     flex-direction:column;
-    color:#f8e7c6;
+    justify-content:center;
+    align-items:center;
+    color:#f4e5c3;
+    z-index:2;
     text-align:center;
-    padding:30px;
+    padding:40px;
 }
 
-.cover-title h1{
+.cover-content h1{
     font-size:42px;
-    margin-bottom:20px;
-    letter-spacing:2px;
+    margin-bottom:15px;
+    letter-spacing:3px;
 }
 
-.cover-title p{
-    font-size:20px;
-    opacity:.9;
+.cover-content p{
+    opacity:.8;
+    font-size:19px;
 }
 
 /* ===== PAGES ===== */
@@ -115,198 +127,179 @@ body{
     width:100%;
     height:100%;
     background:#fffdf8;
-    border-radius:8px 15px 15px 8px;
+    border-radius:6px 12px 12px 6px;
     transform-origin:left;
-    transition:1.5s cubic-bezier(.77,0,.175,1);
     transform-style:preserve-3d;
-    box-shadow:
-    0 8px 20px rgba(0,0,0,.3);
+    transition:1.5s cubic-bezier(.77,0,.175,1);
     overflow:hidden;
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,.18);
 }
 
-.page-front,
-.page-back{
+/* realistic paper stack */
+
+.page:nth-child(2){ transform:translateZ(-1px); z-index:5; }
+.page:nth-child(3){ transform:translateZ(-2px); z-index:4; }
+.page:nth-child(4){ transform:translateZ(-3px); z-index:3; }
+.page:nth-child(5){ transform:translateZ(-4px); z-index:2; }
+
+.front,
+.back{
     position:absolute;
     inset:0;
     backface-visibility:hidden;
-    padding:45px;
+    background:
+    linear-gradient(to bottom,#fffdf8,#f8f1e7);
+    padding:35px;
 }
 
-.page-back{
+.back{
     transform:rotateY(180deg);
 }
 
-.page-content{
+.content{
     width:100%;
     height:100%;
-    border:2px solid #e6dccf;
-    padding:25px;
+    border:2px solid #eadfce;
+    padding:22px;
+
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
     gap:18px;
-    background:
-    linear-gradient(to bottom,#fffdf8,#f7f0e6);
 }
 
-.page-content img{
+.content img{
     width:100%;
-    height:230px;
+    height:220px;
     object-fit:cover;
-    border-radius:12px;
-    box-shadow:0 10px 20px rgba(0,0,0,.2);
+    border-radius:10px;
+    box-shadow:0 10px 20px rgba(0,0,0,.18);
 }
 
-.page-content h2{
-    color:#3a2413;
-    font-size:30px;
+.content h2{
+    color:#442613;
+    font-size:28px;
 }
 
-.page-content p{
-    color:#4a3728;
+.content p{
     text-align:center;
+    color:#5c4331;
     line-height:2;
-    font-size:18px;
+    font-size:17px;
 }
 
-/* ===== OPEN STATES ===== */
+/* ===== OPEN ===== */
 
 .book.open .cover{
-    transform:rotateY(-160deg);
-}
-
-.page.flipped{
     transform:rotateY(-180deg);
 }
 
-/* realistic stack */
+/* ===== FLIP ===== */
 
-.page:nth-child(2){ z-index:90; }
-.page:nth-child(3){ z-index:80; }
-.page:nth-child(4){ z-index:70; }
-.page:nth-child(5){ z-index:60; }
-
-.page:nth-child(2){ transform:translateZ(-2px); }
-.page:nth-child(3){ transform:translateZ(-4px); }
-.page:nth-child(4){ transform:translateZ(-6px); }
-.page:nth-child(5){ transform:translateZ(-8px); }
-
-.shadow{
-    position:absolute;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,.3);
-    filter:blur(40px);
-    transform:translateY(50px) rotateX(90deg);
-    z-index:-1;
+.page.flip{
+    transform:rotateY(-180deg);
 }
 
 /* ===== MOBILE ===== */
 
 @media(max-width:500px){
 
-    .book-wrap{
+    .book{
         width:330px;
         height:500px;
     }
 
-    .cover-title h1{
-        font-size:32px;
+    .content img{
+        height:180px;
     }
 
-    .page-content h2{
-        font-size:24px;
-    }
-
-    .page-content p{
-        font-size:15px;
+    .cover-content h1{
+        font-size:30px;
     }
 
 }
+
 </style>
 </head>
 <body>
 
-<div class="book-wrap">
+<div class="book" id="book">
 
     <div class="shadow"></div>
 
-    <div class="book" id="book">
+    <!-- COVER -->
 
-        <!-- COVER -->
-
-        <div class="cover" id="cover">
-            <div class="cover-title">
-                <h1>MY STORY</h1>
-                <p>اضغط لفتح الكتاب</p>
-            </div>
+    <div class="cover" id="cover">
+        <div class="cover-content">
+            <h1>MY BOOK</h1>
+            <p>اضغط على الكتاب</p>
         </div>
-
-        <!-- PAGE 1 -->
-
-        <div class="page">
-            <div class="page-front">
-                <div class="page-content">
-                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop" />
-                    <h2>البداية</h2>
-                    <p>
-                        هون بتحط الكلام اللي بدك ياه
-                        بشكل مرتب وحلو داخل الصفحة الأولى.
-                    </p>
-                </div>
-            </div>
-
-            <div class="page-back">
-                <div class="page-content">
-                    <img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=80&w=1200&auto=format&fit=crop" />
-                    <h2>الذكرى الثانية</h2>
-                    <p>
-                        تقدر تضيف صور ونصوص طويلة
-                        ويضل شكل الصفحة واقعي جداً.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- PAGE 2 -->
-
-        <div class="page">
-            <div class="page-front">
-                <div class="page-content">
-                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop" />
-                    <h2>صفحة ثالثة</h2>
-                    <p>
-                        حركة قلب الصفحات مصنوعة بـ 3D
-                        وتعطي إحساس كتاب حقيقي.
-                    </p>
-                </div>
-            </div>
-
-            <div class="page-back">
-                <div class="page-content">
-                    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" />
-                    <h2>النهاية</h2>
-                    <p>
-                        لما توصل لآخر صفحة
-                        الكتاب رح يتسكر تلقائياً.
-                    </p>
-                </div>
-            </div>
-        </div>
-
     </div>
+
+    <!-- PAGE 1 -->
+
+    <div class="page">
+        <div class="front">
+            <div class="content">
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop">
+                <h2>البداية</h2>
+                <p>
+صفحة الاولى
+                </p>
+            </div>
+        </div>
+
+        <div class="back">
+            <div class="content">
+                <img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=80&w=1200&auto=format&fit=crop">
+                <h2>الصفحة الثانية</h2>
+                <p>
+صفحة ثانية
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 2 -->
+
+    <div class="page">
+        <div class="front">
+            <div class="content">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop">
+                <h2>صفحة ثالثة</h2>
+                <p>
+صفحة ثالثة
+                </p>
+            </div>
+        </div>
+
+        <div class="back">
+            <div class="content">
+                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop">
+                <h2>النهاية</h2>
+                <p>
+اخر صفحة
+                </p>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <script>
+
 const book = document.getElementById("book");
-const cover = document.getElementById("cover");
 const pages = document.querySelectorAll(".page");
 
-let current = 0;
 let opened = false;
+let currentPage = 0;
 
 book.addEventListener("click", () => {
+
+    /* OPEN BOOK */
 
     if(!opened){
         book.classList.add("open");
@@ -314,21 +307,38 @@ book.addEventListener("click", () => {
         return;
     }
 
-    if(current < pages.length){
-        pages[current].classList.add("flipped");
-        current++;
+    /* FLIP PAGES */
+
+    if(currentPage < pages.length){
+
+        pages[currentPage].classList.add("flip");
+
+        currentPage++;
+
+        return;
     }
-    else{
-        pages.forEach(p => p.classList.remove("flipped"));
+
+    /* CLOSE BOOK */
+
+    pages.forEach((p,i)=>{
 
         setTimeout(()=>{
-            book.classList.remove("open");
-            current = 0;
-            opened = false;
-        },1200);
-    }
+            p.classList.remove("flip");
+        },i * 180);
+
+    });
+
+    setTimeout(()=>{
+
+        book.classList.remove("open");
+
+        currentPage = 0;
+        opened = false;
+
+    },1200);
 
 });
+
 </script>
 
 </body>
