@@ -191,19 +191,22 @@ body.engineer-mode {
 @keyframes blink { 50% { opacity: 0; } }
 
 .message {
-  display: block !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-
-  padding: 10px 16px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #ff4f9a, #ff8fc2);
-  color: #000;
-  font-size: 14px;
-  font-weight: 700;
-  width: fit-content;
-  margin: 20px auto;
+  margin-top: 30px;
+  padding: 15px 20px;
+  border-radius: 15px;
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
   cursor: pointer;
+  transition: all 0.4s var(--ease-in-out);
+  font-family: 'Cairo', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #ff4f9a;
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  display: none;
+  transform: translateY(20px);
+  direction: rtl;
 }
 
 .message.show {
