@@ -1,316 +1,140 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>3D Book</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-:root{
-  --pink:#ffb8ca;
-  --pink2:#ff8fad;
-  --paper:#fffdfc;
-}
-
-*{margin:0;padding:0;box-sizing:border-box}
 
 body{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  overflow:auto;
-  background:radial-gradient(circle at top,#ffe7ef,#fff);
-  font-family:'Poppins','Cairo',sans-serif;
-}
-
-#starCanvas{
-  position:fixed;
-  inset:0;
-  z-index:0;
-  pointer-events:none;
-  background:transparent;
-}
-
-.container{
-  position:relative;
-  z-index:10;
-  text-align:center;
-}
-
-.btn{
-  padding:16px 44px;
-  border:none;
-  border-radius:60px;
-  background:linear-gradient(135deg,var(--pink),var(--pink2));
-  color:#fff;
-  font-size:1.1rem;
-  font-weight:700;
-}
-
-#count{
-  display:none;
-  font-size:120px;
-  color:var(--pink2);
-  font-weight:700;
-}
-
-.book-scene{
-  perspective:4000px;
-  display:none;
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#111;
+overflow:hidden;
 }
 
 .book{
-  width:380px;
-  height:540px;
-  transform-style:preserve-3d;
-  transform:rotateX(10deg) rotateY(-18deg);
-  position:relative;
-}
+position:relative;
+width:320px;
+height:480px;
+perspective:2000px;
 
-.book-cover{
-  position:absolute;
-  inset:0;
-  border-radius:16px;
-  background:linear-gradient(135deg,#ffd0dc,#ffb2c6);
-  box-shadow:0 30px 60px rgba(0,0,0,.18);
-}
-
-.book-pages{
-  position:absolute;
-  inset:12px;
-  background:var(--paper);
-  border-radius:10px;
-  overflow:hidden;
+/* 🔥 أهم إصلاح */
+overflow:visible;
 }
 
 .page{
-  position:absolute;
-  inset:0;
-  transform-origin:left;
-  transform-style:preserve-3d;
-  transition:.8s ease;
+position:absolute;
+width:100%;
+height:100%;
+transform-origin:left center;
+transition:transform 1s ease;
+transform-style:preserve-3d;
+cursor:pointer;
+}
+
+.face{
+position:absolute;
+inset:0;
+backface-visibility:hidden;
+border-radius:10px;
+overflow:hidden;
+display:flex;
+flex-direction:column;
+align-items:center;
+background:#fffdf9;
+box-shadow:0 10px 25px rgba(0,0,0,.3);
+}
+
+.back{
+transform:rotateY(180deg);
+background:#eee;
 }
 
 .page.flipped{
-  transform:rotateY(-180deg);
+transform:rotateY(-180deg);
 }
 
-.page-front,.page-back{
-  position:absolute;
-  inset:0;
-  backface-visibility:hidden;
-  padding:20px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:flex-start;
+img{
+width:100%;
+height:300px;
+object-fit:cover;
 }
 
-.page-back{
-  transform:rotateY(180deg);
+.text{
+margin-top:10px;
+font-weight:bold;
+color:#333;
 }
 
-.page-image{
-  width:100%;
-  height:320px;
-  object-fit:cover;
-  border-radius:12px;
+.cover .face{
+background:linear-gradient(135deg,#8b5e3c,#4a2a13);
+color:#fff;
+justify-content:center;
 }
 
-.page-text{
-  margin-top:12px;
-  text-align:center;
-  color:#555;
-  font-size:14px;
-  line-height:1.8;
-  max-height:120px;
-  overflow:auto;
-}
-
-.end-page{
-  display:none;
-  height:100%;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  font-size:26px;
-  color:#ff8fad;
-}
-
-.tap{
-  margin-top:auto;
-  color:#ff8fad;
-  font-size:12px;
-}
-
-.star{
-  position:fixed;
-  width:3px;
-  height:3px;
-  background:#ff7fb0;
-  border-radius:50%;
-  opacity:.8;
-  z-index:1;
-  box-shadow:0 0 6px #ff7fb0;
-  animation:twinkle linear infinite;
-}
-
-@keyframes twinkle{
-  0%{transform:translateY(100vh) scale(.5);opacity:.2}
-  50%{opacity:1}
-  100%{transform:translateY(-10vh) scale(1);opacity:.2}
-}
 </style>
 </head>
 
 <body>
 
-<canvas id="starCanvas"></canvas>
-
-<audio id="bgMusic" loop>
-<source src="https://mp3tourl.com/audio/1778104889205-d3f1bf97-6ff6-4de5-be39-7b816d0753d0.m4a">
-</audio>
-
-<div class="container">
-
-<div id="startView">
-<button class="btn" onclick="startSequence()">Start</button>
-</div>
-
-<div id="count"></div>
-
-<div class="book-scene" id="bookScene">
-
-<div class="book">
-<div class="book-cover"></div>
-
-<div class="book-pages">
-
-<div class="page" id="page" onclick="flipPage()">
-
-<div class="page-front" id="front">
-
-<img id="pageImage" class="page-image"/>
-<div class="page-text" id="desc"></div>
-<div class="tap">الصفحة الي بعدها →</div>
-
-</div>
-
-<div class="page-back">
-
-<div class="page-text" style="margin-top:60px;">♥</div>
-
-</div>
-
-</div>
-
-<div class="end-page" id="endPage">
-<div id="typeText"></div>
-</div>
-
-</div>
-</div>
-
-</div>
-</div>
+<div class="book" id="book"></div>
 
 <script>
 
-const galleryData = [
-  {image:"https://i.imgur.com/Nmwgm8m.jpeg",caption:"هنا الكلام اللي يظهر مع الصورة الأولى"},
-  {image:"https://i.imgur.com/Nmwgm8m.jpeg",caption:"هنا الكلام للصورة الثانية"},
-  {image:"https://i.imgur.com/Nmwgm8m.jpeg",caption:"هنا الكلام للصورة الثالثة"}
+const data=[
+{img:"https://i.imgur.com/Nmwgm8m.jpeg",txt:"أجمل الذكريات.."},
+{img:"https://i.imgur.com/Nmwgm8m.jpeg",txt:"لحظات لا تنسى.."},
+{img:"https://i.imgur.com/Nmwgm8m.jpeg",txt:"معك دائماً.."}
 ];
 
-let i=0;
-let flipping=false;
-const music=document.getElementById("bgMusic");
+const book=document.getElementById("book");
 
-document.addEventListener("click",()=>music.play().catch(()=>{}),{once:true});
+let z=100;
 
-function startSequence(){
-document.getElementById("startView").style.display="none";
-startCount();
-}
+data.forEach((item,i)=>{
 
-function startCount(){
-const el=document.getElementById("count");
-el.style.display="block";
-let n=1;
-let t=setInterval(()=>{
-el.textContent=n;
-if(n>=3){
-clearInterval(t);
-setTimeout(()=>{
-el.style.display="none";
-document.getElementById("bookScene").style.display="block";
-update();
-},400);
-}
-n++;
-},600);
-}
+const page=document.createElement("div");
+page.className="page";
+page.style.zIndex=z-i;
 
-function update(){
-if(i>=galleryData.length){
-showEnd();
-return;
-}
-const item=galleryData[i];
-document.getElementById("pageImage").src=item.image;
-document.getElementById("desc").textContent=item.caption;
-}
+page.innerHTML=`
+<div class="face">
+<img src="${item.img}">
+<div class="text">${item.txt}</div>
+</div>
+<div class="face back"></div>
+`;
 
-function flipPage(){
-if(flipping) return;
-flipping=true;
-
-const page=document.getElementById("page");
+page.onclick=()=>{
 page.classList.add("flipped");
+setTimeout(()=>page.style.zIndex=0,600);
+};
 
-setTimeout(()=>{
-i++;
-update();
-},400);
+book.appendChild(page);
 
-setTimeout(()=>{
-page.classList.remove("flipped");
-flipping=false;
-},800);
-}
+});
 
-function showEnd(){
-document.getElementById("page").style.display="none";
-document.getElementById("endPage").style.display="flex";
-typeWriter("الرسالة اخر شي هون",0);
-}
+const cover=document.createElement("div");
+cover.className="page cover";
+cover.style.zIndex=200;
 
-function typeWriter(text,i){
-if(i===0){
-document.getElementById("typeText").innerHTML="";
-}
-if(i<text.length){
-document.getElementById("typeText").innerHTML+=text.charAt(i);
-setTimeout(()=>typeWriter(text,i+1),60);
-}
-}
+cover.innerHTML=`
+<div class="face">
+<h2>كتاب ذكرياتنا</h2>
+<p>اضغط للفتح </p>
+</div>
+<div class="face back"></div>
+`;
 
+cover.onclick=()=>{
+cover.classList.add("flipped");
+};
 
-function createStars(){
-  const count=120;
-  for(let i=0;i<count;i++){
-    let s=document.createElement("div");
-    s.className="star";
-    s.style.left=Math.random()*window.innerWidth+"px";
-    s.style.animationDuration=(3+Math.random()*6)+"s";
-    s.style.animationDelay=(Math.random()*5)+"s";
-    document.body.appendChild(s);
-  }
-}
-createStars();
+book.appendChild(cover);
 
 </script>
 
