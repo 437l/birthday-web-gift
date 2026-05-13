@@ -1,20 +1,25 @@
 const galleryData = {
 
-  welcomeText: "happy birthday",
+  welcomeText: "كل عام وانتي بخير  وجعل ايامك كلها فرح وسعادة يئلبي بعرف المفاجئه هيك ما كانت على البال بس بتمنى تعجبك لانك اجمل حد بحياتي وبعطيه كل وقتي المهم بحبك وبتمنى دايما نكون مع بعض وبتمنالك سنة سعيدة احسن من الي قبل وتحئئي كل احلامك وطموحاتك يخليلي ياكي اكبسي زر تحت حتى تكملي قصتنا للاخير يعمري بحبكككك ♥️🙂‍↔️",
   people: [
     {
-      image: "https://cdn.discordapp.com/attachments/1503121205647900873/1503125804622549022/Screenshot_20260510_233821_Gallery.jpg?ex=6a0430be&is=6a02df3e&hm=1f9d18671690c2c22d17d1a8ca9aee841da511208c7b64d6f2d7bac9c3d5842b&",
+      image: "https://cdn.discordapp.com/attachments/1503121205647900873/1504208222607642705/Screenshot_20260510_233821_Gallery.jpg?ex=6a062693&is=6a04d513&hm=71a33f00e0049a0e68809652ac853e571e5914174ba73cfc8a89a818522378ad&",
       caption: `حبيبي  عمري يا أحلى مين يدخل سنه جدیده كل عام وانتي اجمل انسانه شفتهه وكل عام
 وانتي اسعد انسانه وان شاء الله موفقه فحياتك وفالدراسه وان شاءلله المعدل العالي وبالجامعه الي تتمنيها واليوم هو احلى يوم انولدت فيه نجمتي وروححي وحبيبت عمري كبرت سنه كل عام وانتي بخير حلوتي شعوري فهل لحضه وانا  اكتبلك معايده بعرف قليله بحقك بس هل يوم مينوصف انولدت فيه حبيبتي وروححي ودنيتي وعوضي وكلشي احبه يروحياتي الله يخليك الي حبقلبي وكل عام وانتي بالف الف الف خير عقبال المليون سنه🥹❤️`
     },
     {
       image: "https://cdn.discordapp.com/attachments/1503121205647900873/1503125961393307861/Screenshot_20260510_233858_Gallery.jpg?ex=6a0430e3&is=6a02df63&hm=83885bfd77ece755e891423622674c109b5058d45fabeb3fb6dedf5406aa2f2b&",
-      caption: "شوفييييي هون مكيتنا وكيف كبرنة بسرعه يعمري وان شاء الله دوم مع بعض🎀😂🥹"
+      caption: "شوفييييي هون مكيتنا وكيف كبرنة بسرعه يعمري وان شاء الله دوم مع بعض بنسند بعض وحتى لو كبرتي سنة بتضلي بنسبه الي لسا طفلة صغيره بتتدلل وبتنحببببب  ويا رب كل سنة تعدي عليك تدوم فيها غلاوتنا وتكبر علاقتنا 🎀😂🥹"
+    },
+    {
+      image: "https://cdn.discordapp.com/attachments/1503121205647900873/1504208603001913374/Screenshot_20260510_233927_Gallery.jpg?ex=6a0626ed&is=6a04d56d&hm=7fe724192316ea4c114bbaaf578a3ffb34f811a1c51050c511fb010fc8de7663&",
+      caption: "Happy birthday to someone very special to me. I hope every year, you stay by my side. I love you ❤️
+From 6 to 7, and forever more. I love you endlessly. I always want you to be happy and part of my days. I can’t stop smiling when I’m with you. You are my best friend forever……"
     }
     
   ],
   
-    endMessage: "endddddd",
-    endImage: "https://i.imgur.com/Nmwgm8m.jpeg"
+    endMessage: "ختاماً لهاذا اليوم الحلو بقولك لو كان القمر بشر كان غار منك يعمري انتي مو متخيله قديش غلاوتك عندي يلئبي بس ولله وبتمنى نضل مع بعض نضحك سوا ونبئا مع بعض سوا ونكبر سوا ويخليلي ياكي ويحفظك من كل شر ويجمعنا قريب إن شاء الله يحياتي بدي ياك تضلي متل ما انتي هيك وانا بحبك اكتير وانجوي يور ديييييي",
+    endImage: "https://cdn.discordapp.com/attachments/1503121205647900873/1504208685520519178/Screenshot_20260511_153953_WhatsAppBusiness.jpg?ex=6a062701&is=6a04d581&hm=03653cff6fb7a35d7769b652e1db7dd7f7459278ea03026b09de226090c1e0d6&"
 
 };
