@@ -13,8 +13,8 @@ const galleryData = {
     },
     {
       image: "https://cdn.discordapp.com/attachments/1503121205647900873/1504208603001913374/Screenshot_20260510_233927_Gallery.jpg?ex=6a0626ed&is=6a04d56d&hm=7fe724192316ea4c114bbaaf578a3ffb34f811a1c51050c511fb010fc8de7663&",
-      caption: "Happy birthday to someone very special to me. I hope every year, you stay by my side. I love you ❤️
-From 6 to 7, and forever more. I love you endlessly. I always want you to be happy and part of my days. I can’t stop smiling when I’m with you. You are my best friend forever……"
+      caption: `Happy birthday to someone very special to me. I hope every year, you stay by my side. I love you ❤️
+From 6 to 7, and forever more. I love you endlessly. I always want you to be happy and part of my days. I can’t stop smiling when I’m with you. You are my best friend forever……`
     }
     
   ],
