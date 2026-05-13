@@ -48,7 +48,9 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at top, rgba(255,79,154,0.15), transparent 60%);
+  background: radial-gradient(circle at top,
+    rgba(222,118,185,0.15),
+  transparent 60%);
   pointer-events: none;
 }
 
@@ -390,7 +392,7 @@ function initStars() {
 
 function drawStars() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#ff0062';
+    ctx.fillStyle = '#de76b9';
   stars.forEach(s => {
     ctx.globalAlpha = s.opacity;
     ctx.beginPath();
